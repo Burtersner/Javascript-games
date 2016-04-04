@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <title>Greg's Gambits | Greg's Boggle</title>
+    
+    <link href="greg.css" rel="stylesheet">
+    <meta charset="utf-8">
+    
+    <script src="gregBoggle.js"></script>
+    
+    <script>
+    
+            function boggle()
+            {
+                
+                var playerScore = [0, 0]; var flag = 0;
+                var possibleWords = []; var notAword = []; var playerWords = [];
+                notAword[0] = []; notAword[1] = [];
+                playerWords[0] = []; playerWords[1] = [];
+                
+                possibleWords = words(Math.floor(Math.random()*5) + 1);
+                
+                var scrambledLetters = possibleWords[0];
+                
+                
+                document.getElementById("letters").innerHTML = scrambledLetters;
+                
+                // get player entries
+                for (var i = 0; i < 2; i++)
+                {
+                    var playerEntry = "";
+                    
+                    while (playerEntry != 'q')
+                    {
+                        playerEntry = prompt("Player " + (i+1) + ", enter a word or enter Q when done");
+                        
+                        playerWords[i].push(playerEntry);
+                    }
+                    
+                    // check winning score and list bad words
+                    
+                    for (var j = 0; j < playerWords[i].length - 1; j++)
+                    {
+                        flag = 0;
+                        
+                        for (var k = 1; k < possibleWords.length; k++)
+                        {
+                            if (playerWords[i][j] == possibleWords[k])
+                            {
+                                playerScore[i]++;
+                                flag = 1;
+                            }
+                        }
+                        
+                        if (flag == 0)
+                            notAword[i].push(playerWords[i][j]);
+                    }
+                }
+                
+                document.getElementById("p1result").innerHTML = ("Your score is " + playerScore[0] + ". The following entries are not valid words: <br>" + notAword[0]);
+                
+                document.getElementById("p2result").innerHTML = ("Your score is " + playerScore[1] + ". The following entries are not valid words: <br>" + notAword[1]);
+            }
+
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="container">
+
+        <img src="images/superhero.jpg" width="120" height="120" class="floatleft">
+        
+        <h1><em>Greg's Game of Boggle</em></h1>
+        
+        <div id="nav">
+            <a href="index.html">Home</a>
+            <a href="greg.html">About Greg</a>
+            <a href="aboutyou.html">Tell Greg About You</a>
+            <a href="playGames.html">Play a Game</a>
+            <a href="signIn.html">Sign In</a>
+            <a href="contact.html">Contact Us</a>        
+        </div>
+
+        <div id="content">
+            
+            <p>This is a 2 player game. The object of the game is to create as many words as you can, from the letters shown below. The first player can enter words until they choose to quite, at which time, the second player
+               will begin entering words. Player scores will be tallied up a the end. When you are ready to begin, click the button.</p>
+            
+            <p><button onclick="boggle()">begin the game</button></p>
+            
+            <h2><br><br>Letters you can use:<br><div id="letters">&nbsp;</div><br></h2>
+            
+            <h2>Player 1 results:<br><div id="p1result">&nbsp;</div></h2>
+            
+            <h2>Player 2 results:<br><div id="p2result">&nbsp;</div></h2>
+                
+        </div>
+        
+        <div id="footer">
+            Copyright &copy; 2013 Greg's Gambits<br>
+            <a href="mailto:byron.p.burdette@my.sfcollege.edu">byron.p.burdette@my.sfcollege.edu</a>
+        </div>
+        
+    </div>
+</body>
+</html>

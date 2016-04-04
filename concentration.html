@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Greg's Gambits | Conentration</title>
+        <link href="greg.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    <script>
+        var memArray = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H', 'I', 'I', 'J', 'J', 'K', 'K', 'L', 'L'];
+        var memoryValues = [];
+        var tileID = [];
+        var tilesFlipped = 0;
+        Array.prototype.shuffleTiles = function()
+        {
+            var i = this.length, j, temp;
+            while(--i > 0)
+            {
+                j = Math.floor(Math.random() * (i+1));
+                temp = this[j];
+                this[j] = this[i];
+                this[i] = temp;
+            }
+        }
+        
+        function newBoard()
+        {
+            tilesFlipped = 0;
+            var output = '';
+            memArray.shuffleTiles();
+            for(var i = 0; i < memArray.length; i++)
+                output += '<div id="tile'+i+'" onclick="memoryFlipTile(this,\''+memArray[i]+'\')"></div>';
+            document.getElementById('board').innerHTML = output;
+        }
+        
+        function memoryFlipTile(tile,val)
+        {
+            if(tile.innerHTML == "" && memoryValues.length < 2)
+            {
+                
+                tile.innerHTML = val;
+                if(memoryValues.length == 0)
+                {
+                    memoryValues.push(val);
+                    tileID.push(tile.id);
+                } 
+                else if(memoryValues.length == 1)
+                {
+                    memoryValues.push(val);
+                    tileID.push(tile.id);
+                    if(memoryValues[0] == memoryValues[1])
+                    {
+                        tilesFlipped += 2;
+                        // Clear both arrays
+                        memoryValues = [];
+                        tileID = [];
+                        // Check to see if the whole board is cleared
+                        if(tilesFlipped == memArray.length)
+                        {
+                            alert("You win! Resetting...");
+                            document.getElementById('board').innerHTML = "";
+                            newBoard();
+                        }
+                    } 
+                    else 
+                    {
+                        function flip2Back()
+                        {
+                            // Flip the 2 tiles back over
+                            var tile1 = document.getElementById(tileID[0]);
+                            var tile2 = document.getElementById(tileID[1]);
+                            tile1.style.background = '#000040';
+                            tile1.innerHTML = "";
+                            tile2.style.background = '#000040';
+                            tile2.innerHTML = "";
+                            // Clear both arrays
+                            memoryValues = [];
+                            tileID = [];
+                        }
+                        setTimeout(flip2Back, 700);
+                    }
+                }
+            }
+        }
+    </script>
+    
+</head>
+
+<body>
+
+    <div id="memcontainer">
+
+        <img src="images/superhero.jpg" width="120" height="120" class="floatleft">
+        <h1 id="logo"><em>The Memory Game</em></h1>
+        
+        <p>&nbsp;</p>
+        
+        <div id="nav">
+            <a href="index.html">Home</a>
+            <a href="greg.html">About Greg</a>
+            <a href="aboutyou.html">Tell Greg About You</a>
+            <a href="playGames.html">Play a Game</a>
+            <a href="signIn.html">Sign In</a>
+            <a href="contact.html">Contact Us</a>        
+        </div>
+
+        <p>This is a game of concentration. Turn over tiles and try to match pairs of letters.</p>
+        
+        <p>&nbsp;</p>
+        
+        <div id="memcontent">
+            
+            <div id="board"></div>
+            <script>newBoard();</script>
+            
+        </div>
+        
+        <div id="footer">
+            Copyright &copy; 2013 Greg's Gambits<br>
+            <a href="mailto:byron.p.burdette@my.sfcollege.edu">byron.p.burdette@my.sfcollege.edu</a>
+        </div>
+    </div>
+</body>
+</html>

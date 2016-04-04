@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <title>Greg's Gambits | Game of 21</title>
+    
+    <link href="greg.css" rel="stylesheet">
+    <meta charset="utf-8">
+    
+    <script>
+        function drawCard()
+        {
+            return (Math.round(Math.random() * 9 + 2));
+        }
+        
+        
+        function blackjack()
+        {
+            var playerScore = 0;
+            var dealerScore = 0;
+            var playerCards = [];
+            var dealerCards = [];
+                    
+            document.getElementById("pScore").innerHTML = playerScore;
+            document.getElementById("dScore").innerHTML = dealerScore;
+            document.getElementById("winner").innerHTML = ("&nbsp;");
+            
+            while ((playerScore < 200) && (dealerScore < 200))
+            {
+                var playerCards = [];
+                var dealerCards = [];
+                var player = 0;
+                var dealer = 0;
+                var flag = 0;
+                
+                document.getElementById("dCards").innerHTML = dealerCards;
+                document.getElementById("winner").innerHTML = ("&nbsp;");
+                
+                
+                for ( var i = 0; i < 2; i++)
+                {
+                    var temp1 = drawCard();
+                    var temp2 = drawCard();
+                    
+                    playerCards.push(temp1);
+                    dealerCards.push(temp2)
+                }
+                
+                document.getElementById("pCards").innerHTML = playerCards;
+                
+                
+                while (flag == 0)
+                {
+                    var r = confirm("Would you like another card?");
+                    
+                    if (r == true)
+                    {
+                        var temp = drawCard();
+                        playerCards.push(temp);
+                        
+                        document.getElementById("pCards").innerHTML = playerCards;
+                    }
+                    else
+                        flag = 1;
+                }
+                
+                document.getElementById("dCards").innerHTML = dealerCards;
+                
+                var dealer = dealerCards[0] + dealerCards[1];
+                
+                for (var i = 0; i < playerCards.length; i++)
+                {
+                    player += playerCards[i];
+                }
+                
+                if ((player == dealer) || ((player > 21) && (dealer > 21)))
+                    alert("This round's a tie");
+                else if ((player > dealer) && (player <= 21))
+                {
+                    document.getElementById("winner").innerHTML = ("You win this round!");
+                    alert("You win this round!");
+                    playerScore += player;
+                }
+                else if ((player < dealer) && (dealer <= 21))
+                {
+                    document.getElementById("winner").innerHTML = ("You lost this round.");
+                    alert("You lost this round.");
+                    dealerScore += dealer;
+                }
+                else if ((player > 21) && (dealer < 21))
+                {
+                    document.getElementById("winner").innerHTML = ("You lost this round.");
+                    alert("You lost this round.");
+                    dealerScore += dealer;
+                }
+                else
+                {
+                    document.getElementById("winner").innerHTML = ("You win this round!");
+                    alert("You win this round!");
+                    playerScore += player;
+                }
+                    
+                
+                document.getElementById("pScore").innerHTML = playerScore;
+                document.getElementById("dScore").innerHTML = dealerScore;
+            }
+            
+            if (playerScore > dealerScore)
+                document.getElementById("winner").innerHTML = ("Congratulation! You won the Game!");
+            else
+                document.getElementById("winner").innerHTML = ("You lost the game.");
+        }
+        
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="container">
+
+        <img src="images/superhero.jpg" width="120" height="120" class="floatleft">
+        <h1 id="logo"><em>Greg's Gambits </em></h1>
+          
+        <h2 align="center"><em>Lets play a game of Blackjack!</em></h2>
+
+        <p>&nbsp;</p>
+        
+        <div id="nav">
+            <a href="index.html">Home</a>
+            <a href="greg.html">About Greg</a>
+            <a href="aboutyou.html">Tell Greg About You</a>
+            <a href="playGames.html">Play a Game</a>
+            <a href="signIn.html">Sign In</a>
+            <a href="contact.html">Contact Us</a>        
+        </div>
+
+        <div id="content">
+        
+            <button onclick="blackjack()">Deal the cards</button>
+            
+            <br>
+            
+            <table class="fixedTable" width = "100%">
+                <tr>
+                    <th>Your cards</th>
+                    <th>The dealer's cards</th>
+                </tr>
+                <tr>
+                    <td id="pCards" >&nbsp;</td>
+                    <td id="dCards">&nbsp;</td>
+                </tr>
+            </table>
+            
+            <p></p>
+            
+            <table class="fixedTable" width = "100%">
+                <tr>
+                    <th>Your score</th>
+                    <th>The dealer's score</th>
+                </tr>
+                <tr>
+                    <td id="pScore" >&nbsp;</td>
+                    <td id="dScore">&nbsp;</td>
+                </tr>
+            </table>
+            
+            <p></p>
+            
+            <div id="winner" align="center"><h2>&nbsp;</h2></div>
+            
+                    
+            
+        </div>
+        
+        <div id="footer">
+            Copyright &copy; 2013 Greg's Gambits<br>
+            <a href="mailto:byron.p.burdette@my.sfcollege.edu">byron.p.burdette@my.sfcollege.edu</a>
+        </div>
+        
+    </div>
+</body>
+</html>

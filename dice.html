@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <title>Greg's Gambits | Hangman</title>
+    
+    <link href="greg.css" rel="stylesheet">
+    <meta charset="utf-8">
+    
+    <script>
+    
+    function rollDice()
+    {
+        var sum = 0;
+        
+        for (var i = 0; i < 2; i++)
+        {
+            sum += Math.floor(Math.random() * 6) + 1
+        }
+        
+        return sum;
+    }
+    
+    function startGame()
+    {
+        var player$ = 100;
+        var npc$ = 100;
+        var kitty = 0;
+        
+        function wager()
+        {
+            var wager = prompt("How much do you wager?");
+            
+            while (isNaN(wager) || wager < 1 || wager > player$)
+                wager = prompt("Please enter a valid wager");
+                
+            player$ -= wager;
+            
+            kitty += wager;
+        }
+    }
+
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="container">
+
+        <img src="images/superhero.jpg" width="120" height="120" class="floatleft">
+        <h1 id="logo"><em>The Game of Hangman</em></h1>
+          
+        <h2 align="center">Greg Challenges you to a Game of Hangman</h2>
+
+        <p>&nbsp;</p>
+        
+        <div id="nav">
+            <a href="index.html">Home</a>
+            <a href="greg.html">About Greg</a>
+            <a href="aboutyou.html">Tell Greg About You</a>
+            <a href="playGames.html">Play a Game</a>
+            <a href="signIn.html">Sign In</a>
+            <a href="contact.html">Contact Us</a>        
+        </div>
+
+        <div id="content">    
+            
+        </div>
+        
+        <div id="footer">
+            Copyright &copy; 2013 Greg's Gambits<br>
+            <a href="mailto:byron.p.burdette@my.sfcollege.edu">byron.p.burdette@my.sfcollege.edu</a>
+        </div>
+        
+    </div>
+</body>
+</html>

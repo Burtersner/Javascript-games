@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>Greg's Gambits | Unbreakable Secret Message Encoder</title>
+    
+    <link href="greg.css" rel="stylesheet">
+    <meta charset="utf-8">
+    
+    <script>
+        function encodeIt()
+        {
+            document.getElementById("key").innerHTML = ("<h2>&nbsp;</h2>");
+            
+            var msg = prompt("Enter your message.");
+            
+            var newmsg = " ";
+            
+            var rnd = Math.floor(Math.random() * 4) + 1;
+            
+            
+            for (var j = 0; j < msg.length; j++)
+            {
+                
+                
+                newmsg += " " + String.fromCharCode(msg.charCodeAt(j) + rnd)
+                
+            }
+            
+            document.getElementById("secret").innerHTML = ("<h2>" + newmsg + "</h2>");
+
+            var choice = prompt("Do you want to see the encryption algorithm?");    
+            if ((choice.charAt(0) == 'y') || (choice.charAt(0) == 'Y'))
+            {
+                document.getElementById("key").innerHTML = ("<h2>" + "take the character, find its ASCII value and subtract " + rnd + "</h2>");
+            }
+            
+        }
+    </script>
+</head>
+
+<body>
+    <div id="container">
+    
+        <img src="images/superhero.jpg" width="120" height="120" class="floatleft">
+        
+        <h1 id="logo"><em>Unbreakable Secret Message Encoder</em></h1>
+        
+        <p>&nbsp;</p>
+        
+        <div id="nav">
+            <a href="index.html">Home</a>
+            <a href="greg.html">About Greg</a>
+            <a href="aboutyou.html">Tell Greg About You</a>
+            <a href="playGames.html">Play a Game</a>
+            <a href="signIn.html">Sign In</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        
+        <div id="content">
+        
+            <h2>Write A Message and Encode It</h2>
+            
+            <p><button onclick="encodeIt()">Enter your message</button></p>
+            
+            <table cellpadding="2" width = "90%" align = "center" border="1">
+                <tr>
+                    <td id="secret"><p>encoded message</p></td>
+                </tr> 
+                <tr>
+                    <td id="key">&nbsp;</td>
+                </tr> 
+            </table>
+            
+        </div>
+        
+        <div id="footer">
+            Copyright &copy; 2013 Greg's Gambits<br>
+            <a href="mailto:byron.p.burdette@my.sfcollege.edu">byron.p.burdette@my.sfcollege.edu</a>
+        </div>
+        
+    </div>
+</body>
+</html>

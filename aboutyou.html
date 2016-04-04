@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+    <title>Greg's Gambits | About You</title>
+    
+    <link href="greg.css" rel="stylesheet">
+    <meta charset="utf-8">
+    
+    <script>
+        function getName()
+        {
+            var name = prompt("Please enter your name");
+            document.getElementById('myname').innerHTML = name;
+        }
+        
+        function getUserName()
+        {
+            var username = prompt("what do you want for your username?");
+            document.getElementById('myusername').innerHTML=username;
+        }
+            
+        function getAvatar()
+        {
+            window.open('avatars.html');
+        }
+            
+        function pickAvatar()
+        {
+            var avatar = prompt("Enter the avatar you want","Bunny");
+            document.getElementById('myavatar').innerHTML = avatar;
+        }
+            
+        function getAvatarHomes()
+        {
+            window.open('homes.html');
+        }
+            
+        function pickAvatarHome()
+        {
+            var avatarHome = prompt("Enter the home you want for your avatar","Rabbit Hole");
+            document.getElementById('myavatarhome').innerHTML = avatarHome;
+        }
+    </script>
+    
+</head>
+
+
+<body>
+    <div id="container">
+
+        <img src="images/superhero.jpg" width="120" height="120" class="floatleft">
+        <h1 id="logo"><em>Greg's Gambits </em></h1>
+          
+        <h2 align="center"><em>Tell Greg About You</em></h2>
+
+        <p>&nbsp;</p>
+        
+        <div id="nav">
+            <a href="index.html">Home</a>
+            <a href="greg.html">About Greg</a>
+            <a href="aboutyou.html">Tell Greg About You</a>
+            <a href="playGames.html">Play a Game</a>
+            <a href="signIn.html">Sign In</a>
+            <a href="contact.html">Contact Us</a>        
+        </div>
+
+        <div id="content">
+            
+            <p><button onclick="getName()">Enter your name</button>
+            Hi there, <span id = "myname" >Greg</span></p>
+            
+            <p>&nbsp;</p>
+            
+            <p><button onclick="getUserName()">Enter a username</button>
+            Username: <span id = "myusername" >KingGreg</span></p>
+            
+            <p>&nbsp;</p>
+            
+            <p><button onclick="getAvatar()">See the avatar choices</button>
+            
+            <p>&nbsp;</p>
+            
+            <p><button onclick="pickAvatar()">Select your avatar</button>
+            The avatar you selected is: <span id = "myavatar">Kitty</span></p>
+            
+            <p>&nbsp;</p>
+            
+            <p><button onclick="getAvatarHomes()">See the avatar home choices</button>
+            
+            <p>&nbsp;</p>
+            
+            <p><button onclick="pickAvatarHome()">Select your avatar's home</button>
+            The home you selected is: <span id = "myavatarhome">Wizard's Castle</span></p>        
+            
+        </div>
+        
+        <div id="footer">Copyright &copy; 2013 Greg's Gambits<br>
+            <a href="mailto:byron.p.burdette@my.sfcollege.edu">byron.p.burdette@my.sfcollege.edu</a>
+        </div>
+        
+    </div>
+</body>
+</html>
+
+</html>
